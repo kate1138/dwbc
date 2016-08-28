@@ -1,0 +1,68 @@
+----------
+- High Level Functionality Requirements
+----------
+1. Nominate book - log the book
+2. Vote
+
+----------
+- DB Design
+----------
+
+Table: books (key: book_id)
+Table: users (key: user_id)
+Table: votes (key: vote_id)
+Table: vote_rounds (key: round_id) - to record a round of voting
+
+books
+ - book_id
+ - creator (fk to users.user_id)
+ - create_date
+ - update_date
+ - book_category (fiction or non fiction)
+ - active_for_vote (default is active. The creator may choose to suppress it.)
+ ---- other book info for display
+ - title
+ - author
+ - ref_link (douban/goodreads/amazon)
+
+users
+ - user_id
+ - user_name
+ - create_date
+ - update_date
+ - active_ind
+
+votes
+ - vote_id (sequential, meaningless)
+ - creator (fk to users.user_id, who cast the vote)
+ - create_date
+ - update_date
+ - vote_book (fk to book_id)
+ - vote_round (fk to vote_rounds.round_id)
+ - vote_type (3 types: vote priority 1, vote priority 2, veto vote)
+
+vote_rounds
+ - round_id
+ - create_date
+ - update_date
+ - vote_date
+ - book_category (fiction or non fiction)
+ - book_voted
+
+
+
+----------
+- Workflow
+----------
+
+
+
+----------
+- Logic for voting
+----------
+1. one user can nominate at most X books. Find the user's recommended books, grab top X ones not suppressed.
+2. one user can cast <=3 votes: vote priority 1, vote priority 2 (*.5), veto vote.
+
+----------
+- UI Workflow
+----------
