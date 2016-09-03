@@ -1,15 +1,24 @@
 <?php
-
+  require_once 'user.class.php';
   class userTools {
-    public function user_log_in($user_id,$password){
-      $user_pwd_match=true;
+    public function user_log_in($user_name,$password,$db_handler){
+
+      $hashed_password=md5($password);
+
+      $stmt = $db_handler->prepare("select user_id,user_name,email,create_date,update_date,active_ind from users where user_name = :user_name and password = :hashed_password;");
+      $stmt->execute(array("user_name"=>$user_name,"hashed_password"=>$hashed_password));
+      $user_object=$stmt->fetchAll();
+
       //some code to verify pwd
-      if($user_pwd_match){
-        $_SESSION["user_id"]=$user_id;
+      if(count($user_object)==1){
+        //user logged in, set session variables
+
+        $_SESSION["user_object"]=new user($user_object[0]);
         $_SESSION["user_logged_in"]=true;
         $_SESSION["login_start_time"]=time();
+        return true;
       } else {
-        echo "<br>user and password not matched.";
+        return false;
       }
     }
 
