@@ -26,8 +26,8 @@ Questions:
 
 1. the code in this tutorial:
 http://buildinternet.com/2009/12/creating-your-first-php-application-part-1/
-There is a DB class. I thought it was supposed to handle all DB interactions (it has functions to select, update, insert). However, in other classes (for example the userTools class), some of the DB actions are still performed by a mysql query.
-Design-wise, I don't understand it (why have a DB class that does not handle all DB actions? If other code needs to access DB, they sometimes can use DB object, sometimes have to query DB by themselves?)
+There is a DB class. I thought it was supposed to handle all DB interactions (it has functions to select, update, insert). However, in other classes (for example the userTools class), some of the DB actions are still performed by a mysql query.  
+Design-wise, I don't understand it (why have a DB class that does not handle all DB actions? If other code needs to access DB, they sometimes can use DB object, sometimes have to query DB by themselves?)  
 Effect-wise, would this open more connections to DB than needed?
 
 2. same tutorial as above:
