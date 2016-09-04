@@ -20,7 +20,24 @@
       $this->active_ind = (isset($user_info['active_ind']) ? $user_info['active_ind'] : 0);
     }
 
-    
+    public function save_user_info($db_handler,$is_new_user=false){
+
+      if($is_new_user){
+        $user_data=array(
+          "user_name"=>$this->user_name
+          ,"password_hashed"=>$this->password_hashed
+          ,"email"=>$this->email
+        );
+        $stmt=$db_handler->prepare("insert into users (user_name,password,email,create_date,update_date,active_ind)
+          values(:user_name,:password_hashed,:email,now(),now(),0);
+        ");
+        $stmt->execute($user_data);
+
+      } else {
+        //to be implemented
+      }
+    }
+
   }
 
 ?>

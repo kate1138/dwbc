@@ -10,7 +10,9 @@
   $db_handler = new PDO ("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8"
     ,DB_USER
     ,DB_PASS
-    ,[PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
+    ,[PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+     ,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+     ]
   );
 
   require_once ROOT_DIR.'class/user.class.php';

@@ -2,7 +2,7 @@
   require_once 'include/global.inc.php';
 ?>
 <html>
-<head>DWBC - Log Out</head>
+<title>DWBC - Log Out</title>
 <body>
   So long!<br><br>
   <?php $UT->user_log_out(); ?>

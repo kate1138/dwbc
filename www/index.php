@@ -14,7 +14,7 @@
       if($_SESSION["user_logged_in"]){
         echo "<br>Hello, ".$_SESSION["user_object"]->user_name.". To log out: <a href=\"logout.php\">logout page</a>";
       } else {
-        echo "<br>Welcome, please log in -> <a href=\"login.php\">login page</a>";
+        echo "<br>Welcome, please log in -> <a href=\"login.php\">login page</a> or <a href=\"register.php\">register</a>";
       }
 
     ?>

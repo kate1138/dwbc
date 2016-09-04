@@ -29,5 +29,9 @@
       unset($_SESSION["login_start_time"]);
       session_destroy();
     }
+
+    public function check_name_email_exists($user_name,$email,$db_handler){
+      return false; //to be implemented
+    }
   }
 ?>

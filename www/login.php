@@ -2,7 +2,7 @@
   require_once 'include/global.inc.php';
 ?>
 <html>
-<head>DWBC - Log In</head>
+<title>DWBC - Log In</title>
 <body>
   just trying to call the login func.<br><br>
   <?php

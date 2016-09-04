@@ -1,5 +1,5 @@
 # dwbc
-A very basic personal web app for book club's use. PHP, Apache, MySQL.
+A very basic personal web app for book club's use. PHP, Apache, MySQL.  
 I am new to php. It's almost beyond me why I am doing this. :)
 
 ====================================
@@ -11,15 +11,16 @@ How to deploy to a server
 <placeholder>
 
 ====================================
-tutorials:
-http://www.w3schools.com/php/default.asp
-https://github.com/BranMci/simplePHPUserApp
-http://buildinternet.com/2009/12/creating-your-first-php-application-part-1/
+tutorials:   
+http://www.w3schools.com/php/default.asp  
+https://github.com/BranMci/simplePHPUserApp  
+http://buildinternet.com/2009/12/creating-your-first-php-application-part-1/  
 
-https://phpdelusions.net/pdo#prepared
+https://phpdelusions.net/pdo#prepared  
 
-references
+references  
 http://php.net/docs.php
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 ====================================
 Questions:
