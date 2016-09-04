@@ -38,8 +38,11 @@
 <html>
 <title>DWBC - Register</title>
 <body>
-  Return to <a href="index.php">Home</a>.<br><br>
-  <?php echo $error; ?>
+
+  <?php
+    include 'include/header.php';
+    echo $error;
+  ?>
 
   <form action="register.php" method="post">
     User name: <input type="text" value="<?php echo $user_name; ?>" name="user_name" /><br>

@@ -8,6 +8,8 @@
   <body>
 
     <?php
+
+      include 'include/header.php';
       //if user is logged in, display link to logout.php
       //if user is logged out, display link to login.php
 

@@ -24,7 +24,7 @@
 
     public function user_log_out(){
       echo "so long!";
-      unset($_SESSION["user_id"]);
+      unset($_SESSION["user_object"]);
       unset($_SESSION["user_logged_in"]);
       unset($_SESSION["login_start_time"]);
       session_destroy();

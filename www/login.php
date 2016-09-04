@@ -4,14 +4,16 @@
 <html>
 <title>DWBC - Log In</title>
 <body>
-  just trying to call the login func.<br><br>
+
   <?php
+    include 'include/header.php';
+
     if(isset($_POST["submit_login"])){
       $user_name=$_POST["user_name"];
       $password=$_POST["password"];
 
       if($UT->user_log_in($user_name,$password,$db_handler)){
-        echo "<br>Welcome, you have successfully logged in.";
+        echo "<br>Welcome ".$_SESSION["user_object"]->user_name.", you have successfully logged in.";
       } else {
         echo "<br>Failed to log in, wrong user/password combination.";
       }
