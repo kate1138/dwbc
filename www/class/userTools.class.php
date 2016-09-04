@@ -31,7 +31,14 @@
     }
 
     public function check_name_email_exists($user_name,$email,$db_handler){
-      return false; //to be implemented
+      $stmt=$db_handler->prepare("select count(*) cnt from users where user_name = :user_name or email = :email;");
+      $stmt->execute(array("user_name"=>$user_name,"email"=>$email));
+      $result=$stmt->fetch();
+      if($result["cnt"]=0){
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 ?>
