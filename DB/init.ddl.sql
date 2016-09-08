@@ -1,3 +1,6 @@
+/*create database*/
+
+/*create table*/
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL,
