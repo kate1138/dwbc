@@ -17,7 +17,7 @@
       if($UT->user_log_in($user_name,$password,$db_handler)){
         echo "<br>Welcome ".$_SESSION["user_object"]->user_name.", you have successfully logged in.";
       } else {
-        echo "<br>Failed to log in, wrong user/password combination.";
+        echo "<br>Failed to log in, wrong user/password combination, or user not activated.";
       }
     }
 

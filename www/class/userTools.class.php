@@ -5,7 +5,7 @@
 
       $hashed_password=md5($password);
 
-      $stmt = $db_handler->prepare("select user_id,user_name,password as password_hashed,email,create_date,update_date,active_ind from users where user_name = :user_name and password = :hashed_password;");
+      $stmt = $db_handler->prepare("select user_id,user_name,password as password_hashed,email,create_date,update_date,active_ind from users where user_name = :user_name and password = :hashed_password and active_ind=1;");
       $stmt->execute(array("user_name"=>$user_name,"hashed_password"=>$hashed_password));
       $user_object=$stmt->fetchAll();
 
