@@ -34,8 +34,48 @@
         $stmt->execute($user_data);
 
       } else {
-        //to be implemented
+        $user_data=array(
+          "user_id"=>$this->user_id
+          ,"user_name"=>$this->user_name
+          ,"password_hashed"=>$this->password_hashed
+          ,"email"=>$this->email
+        );
+        $stmt=$db_handler->prepare("update users
+          set user_name=:user_name
+          ,password=:password_hashed
+          ,email=:email
+          ,update_date=now()
+          where user_id=:user_id
+          "
+        );
+        $stmt->execute($user_data);
       }
+    }
+
+    public function set_user_info($db_handler){
+      $user_id=$this->user_id;
+
+      $stmt=$db_handler->prepare("select
+        user_id
+        ,user_name
+        ,password
+        ,email
+        ,create_date
+        ,update_date
+        ,active_ind
+        from users
+        where user_id=:user_id;
+      ");
+      $stmt->execute(array("user_id"=>$user_id));
+      $user_data=$stmt->fetch();
+      //set this user object's fields
+      $this->user_name=$user_data["user_name"];
+      $this->password_hashed=$user_data["password"];
+      $this->email=$user_data["email"];
+      $this->create_date=$user_data["create_date"];
+      $this->update_date=$user_data["update_date"];
+      $this->active_id=$user_data["active_ind"];
+      
     }
 
   }

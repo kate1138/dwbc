@@ -1,5 +1,10 @@
 <?php
   require_once 'include/global.inc.php';
+  $user_name="";
+  $password="";
+  $password_confirm="";
+  $email="";
+  $error="";
 
   if(isset($_POST["submit_form"])){
     $user_name=$_POST["user_name"];
@@ -44,13 +49,17 @@
     echo $error;
   ?>
 
-  <form action="register.php" method="post">
-    User name: <input type="text" value="<?php echo $user_name; ?>" name="user_name" /><br>
-    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br>
-    Confirm password: <input type="password" value="<?php echo $password_confirm; ?>" name="password_confirm" /><br>
-    E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br>
-    <input type="submit" value="Register" name="submit_form" />
-  </form>
+  <?php if($_SESSION["user_logged_in"]) : ?>
+    <p>You are already logged in.</p>
+  <?php else : ?>
+    <form action="register.php" method="post">
+      User name: <input type="text" value="<?php echo $user_name; ?>" name="user_name" /><br>
+      Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br>
+      Confirm password: <input type="password" value="<?php echo $password_confirm; ?>" name="password_confirm" /><br>
+      E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br>
+      <input type="submit" value="Register" name="submit_form" />
+    </form>
+  <?php endif; ?>
 
 </body>
 

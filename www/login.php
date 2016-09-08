@@ -7,6 +7,8 @@
 
   <?php
     include 'include/header.php';
+    $user_name="";
+    $password="";
 
     if(isset($_POST["submit_login"])){
       $user_name=$_POST["user_name"];

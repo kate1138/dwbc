@@ -5,7 +5,7 @@
 
       $hashed_password=md5($password);
 
-      $stmt = $db_handler->prepare("select user_id,user_name,email,create_date,update_date,active_ind from users where user_name = :user_name and password = :hashed_password;");
+      $stmt = $db_handler->prepare("select user_id,user_name,password as password_hashed,email,create_date,update_date,active_ind from users where user_name = :user_name and password = :hashed_password;");
       $stmt->execute(array("user_name"=>$user_name,"hashed_password"=>$hashed_password));
       $user_object=$stmt->fetchAll();
 
@@ -23,7 +23,6 @@
     }
 
     public function user_log_out(){
-      echo "so long!";
       unset($_SESSION["user_object"]);
       unset($_SESSION["user_logged_in"]);
       unset($_SESSION["login_start_time"]);
@@ -34,7 +33,7 @@
       $stmt=$db_handler->prepare("select count(*) cnt from users where user_name = :user_name or email = :email;");
       $stmt->execute(array("user_name"=>$user_name,"email"=>$email));
       $result=$stmt->fetch();
-      if($result["cnt"]=0){
+      if($result["cnt"]==0){
         return false;
       } else {
         return true;
