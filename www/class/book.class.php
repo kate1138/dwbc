@@ -26,6 +26,26 @@
       $this->ref_link = (isset($book_info['ref_link']) ? $book_info['ref_link'] : "");
     }
 
+    public function save_book_info($db_handler,$is_new_book=false){
+
+      if($is_new_book){
+        if(!isset($this->creator_id)){throw new exception("invalid user!");}
+        $book_data=array(
+          "title"=>$this->title
+          ,"author"=>$this->author
+          ,"ref_link"=>$this->ref_link
+          ,"creator_id"=>$this->creator_id
+        );
+        $stmt=$db_handler->prepare("
+          insert into books (creator_id,create_date,update_date,active_book_ind,title,author,ref_link)
+          values(:creator_id,now(),now(),1,:title,:author,:ref_link);
+        ");
+        $stmt->execute($book_data);
+      } else {
+        //update
+      }
+    }
+
 
   }
 

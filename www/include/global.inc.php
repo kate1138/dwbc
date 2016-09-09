@@ -17,6 +17,7 @@
 
   require_once ROOT_DIR.'class/user.class.php';
   require_once ROOT_DIR.'class/userTools.class.php';
+  require_once ROOT_DIR.'class/book.class.php';
 
   session_start();
 
