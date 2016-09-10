@@ -18,11 +18,12 @@
       $this->creator_id = (isset($book_info['creator_id']) ? $book_info['creator_id'] : "");
       $this->create_date = (isset($book_info['create_date']) ? $book_info['create_date'] : "");
       $this->update_date = (isset($book_info['update_date']) ? $book_info['update_date'] : "");
+      $this->book_category_id = (isset($book_info['book_category_id']) ? $book_info['book_category_id'] : "");
       $this->active_book_ind = (isset($book_info['active_book_ind']) ? $book_info['active_book_ind'] : "");
       $this->won_round_id = (isset($book_info['won_round_id']) ? $book_info['won_round_id'] : "");
 
       $this->title = (isset($book_info['title']) ? $book_info['title'] : "");
-      $this->creator_id = (isset($book_info['creator_id']) ? $book_info['creator_id'] : "");
+      $this->author = (isset($book_info['author']) ? $book_info['author'] : "");
       $this->ref_link = (isset($book_info['ref_link']) ? $book_info['ref_link'] : "");
     }
 
@@ -33,12 +34,13 @@
         $book_data=array(
           "title"=>$this->title
           ,"author"=>$this->author
+          ,"book_category_id"=>$this->book_category_id
           ,"ref_link"=>$this->ref_link
           ,"creator_id"=>$this->creator_id
         );
         $stmt=$db_handler->prepare("
-          insert into books (creator_id,create_date,update_date,active_book_ind,title,author,ref_link)
-          values(:creator_id,now(),now(),1,:title,:author,:ref_link);
+          insert into books (creator_id,create_date,update_date,book_category_id,active_book_ind,title,author,ref_link)
+          values(:creator_id,now(),now(),:book_category_id,1,:title,:author,:ref_link);
         ");
         $stmt->execute($book_data);
       } else {

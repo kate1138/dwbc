@@ -4,6 +4,7 @@
   $title="";
   $author="";
   $ref_link="";
+  $book_category_id="";
   if(isset($_SESSION["user_object"]->user_id)){
     $creator_id=$_SESSION["user_object"]->user_id;
   }
@@ -13,17 +14,19 @@
     $title=$_POST["title"];
     $author=$_POST["author"];
     $ref_link=$_POST["ref_link"];
+    $book_category_id=$_POST["book_category_id"];
 
     $book_data=array(
       "title"=>$title
       ,"author"=>$author
       ,"ref_link"=>$ref_link
       ,"creator_id"=>$creator_id
+      ,"book_category_id"=>$book_category_id
     );
 
     $new_book=new book($book_data);
     $new_book->save_book_info($db_handler,true);
-    $msg="<br>Book saved!<br>";
+    $msg="<br>Book <i>".$title."</i> saved!<br>";
   }
 
 ?>
@@ -39,6 +42,10 @@
       Book title: <input type="text" name="title" required .> * required<br>
       Author: <input type="text" name="author" .><br>
       Reference link: <input type="text" name="ref_link" .><br>
+      Book Category<select name="book_category_id">
+        <option value="1">Fiction</option>
+        <option value="2">Non-Fiction</option>
+      </select><br>
       <input type="submit" value="Submit" name="submit_book" />
     </form>
   <?php else : ?>

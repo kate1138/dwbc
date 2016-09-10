@@ -13,17 +13,17 @@
       //if user is logged in, display link to logout.php
       //if user is logged out, display link to login.php
 
-      if($_SESSION["user_logged_in"]){
-        echo "<br>Hello, ".$_SESSION["user_object"]->user_name.".
-        <br>To update user info: <a href=\"user_settings.php\">user settings page</a>.
-        <br>To log out: <a href=\"logout.php\">logout page</a>";
-      } else {
-        echo "<br>Welcome, please log in -> <a href=\"login.php\">login page</a> or <a href=\"register.php\">register</a>";
-      }
-
     ?>
 
-
+    <?php if($_SESSION["user_logged_in"]) : ?>
+      You can:
+      <br><a href="log_book.php">Log a book.</a>
+      <br><a href="user_settings.php">Update user info.</a>
+      <br><a href="logout.php">Log out.</a>
+    <?php else : ?>
+      You are not logged in.
+      <br>Go to<a href="login.php">Log in page.</a><br>
+    <?php endif; ?>
 
   </body>
 </html>

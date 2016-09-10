@@ -15,6 +15,7 @@
     $UT = new userTools();
     $error="";
     $success=true;
+    $msg="";
 
     //validate
     //check if user_name or email already exists
@@ -36,7 +37,7 @@
 
       $new_user=new user($user_data);
       $new_user->save_user_info($db_handler,true);
-      echo "<br>You are now registered. The webmaster will activate you if you are a friend.<br>";
+      $msg="<br>You are now registered. The webmaster will activate you if you are a friend.<br>";
     }
   }
 ?>
@@ -60,6 +61,7 @@
       <input type="submit" value="Register" name="submit_form" />
     </form>
   <?php endif; ?>
+  <?php echo $msg; ?>
 
 </body>
 

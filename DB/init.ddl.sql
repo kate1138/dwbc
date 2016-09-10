@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   `creator_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
+  `book_category_id` tinyint NOT NULL,
   `active_book_ind` tinyint NOT NULL default 1,
   `won_round_id` int(11),
   /* below are book info fields */
