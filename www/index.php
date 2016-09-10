@@ -22,7 +22,7 @@
       <br><a href="logout.php">Log out.</a>
     <?php else : ?>
       You are not logged in.
-      <br>Go to<a href="login.php">Log in page.</a><br>
+      <br>Go to <a href="login.php">Log in page</a> or <a href="register.php">Register</a>.<br>
     <?php endif; ?>
     <br>View <a href="book_list.php">book list</a>.
 
