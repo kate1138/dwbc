@@ -12,12 +12,14 @@
     ,$DB_PASS
     ,[PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
      ,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+     ,PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"
      ]
   );
 
   require_once ROOT_DIR.'class/user.class.php';
   require_once ROOT_DIR.'class/userTools.class.php';
   require_once ROOT_DIR.'class/book.class.php';
+  require_once ROOT_DIR.'class/bookTools.class.php';
 
   session_start();
 

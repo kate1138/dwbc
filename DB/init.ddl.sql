@@ -27,4 +27,4 @@ CREATE TABLE IF NOT EXISTS `books` (
   `author` varchar(1000),
   `ref_link` varchar(1000),
   PRIMARY KEY (`book_id`)
-);
+) DEFAULT CHARSET=utf8;

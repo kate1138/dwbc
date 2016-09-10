@@ -6,6 +6,8 @@
   $email="";
   $error="";
 
+  $msg="";
+
   if(isset($_POST["submit_form"])){ // fields not need to update can be left blank
     $user_name = $_POST["user_name"]!=="" ? $_POST["user_name"] : $_SESSION["user_object"]->user_name;
     $password = $_POST["password"]!=="" ? md5($_POST["password"]) : $_SESSION["user_object"]->password_hashed;
@@ -52,6 +54,8 @@
 
       //update the user object in this session
       $_SESSION["user_object"]->set_user_info($db_handler);
+
+      $msg="updated!";
     }
   }
 ?>
@@ -82,7 +86,7 @@
       <br>You are not logged in!
       <br>please log in -> <a href="login.php">login page</a> or <a href="register.php">register</a>
     <?php endif; ?>
-
+    <?php echo $msg; ?>
 
   </body>
 </html>

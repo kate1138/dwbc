@@ -24,6 +24,7 @@
       You are not logged in.
       <br>Go to<a href="login.php">Log in page.</a><br>
     <?php endif; ?>
+    <br>View <a href="book_list.php">book list</a>.
 
   </body>
 </html>
