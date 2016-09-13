@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `email` (`email`)
-);
+) DEFAULT CHARSET=utf8;;
 
 CREATE TABLE IF NOT EXISTS `books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,

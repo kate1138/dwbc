@@ -32,20 +32,51 @@
       if($is_new_book){
         if(!isset($this->creator_id)){throw new exception("invalid user!");}
         $book_data=array(
-          "title"=>$this->title
-          ,"author"=>$this->author
+          "creator_id"=>$this->creator_id
           ,"book_category_id"=>$this->book_category_id
+          ,"active_book_ind"=>$this->active_book_ind
+          ,"won_round_id"=>$this->won_round_id
+          ,"title"=>$this->title
+          ,"author"=>$this->author
           ,"ref_link"=>$this->ref_link
-          ,"creator_id"=>$this->creator_id
         );
         $stmt=$db_handler->prepare("
-          insert into books (creator_id,create_date,update_date,book_category_id,active_book_ind,title,author,ref_link)
-          values(:creator_id,now(),now(),:book_category_id,1,:title,:author,:ref_link);
+          insert into books (creator_id,create_date,update_date,book_category_id,active_book_ind,won_round_id,title,author,ref_link)
+          values(:creator_id,now(),now(),:book_category_id,:active_book_ind,:won_round_id,:title,:author,:ref_link);
         ");
         $stmt->execute($book_data);
       } else {
         //update
       }
+    }
+
+    public function set_book_info($db_handler){
+      $book_id=$this->book_id;
+      $stmt=$db_handler->prepare("select
+        book_id
+        ,creator_id
+        ,create_date
+        ,update_date
+        ,book_category_id
+        ,active_book_ind
+        ,won_round_id
+        ,title
+        ,author
+        ,ref_link
+        from books
+        where book_id=:book_id;
+      ");
+      $stmt->execute(array("book_id"=>$book_id));
+      $book_data=$stmt->fetch();
+      $this->creator_id=$book_data["creator_id"];
+      $this->create_date=$book_data["create_date"];
+      $this->update_date=$book_data["update_date"];
+      $this->book_category_id=$book_data["book_category_id"];
+      $this->active_book_ind=$book_data["active_book_ind"];
+      $this->won_round_id=$book_data["won_round_id"];
+      $this->title=$book_data["title"];
+      $this->author=$book_data["author"];
+      $this->ref_link=$book_data["ref_link"];
     }
 
 

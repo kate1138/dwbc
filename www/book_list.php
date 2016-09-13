@@ -40,7 +40,7 @@
               <td>".$book["author"]."</td>
               <td>".$book["book_category_desc"]."</td>
               <td>".$book["user_name"]."</td>
-              <td><a href=\"".$book["ref_link"]."\">[link]</a></td>
+              <td><a href=\"".$book["ref_link"]."\" target=\"_blank\">[link]</a></td>
             </tr>";
           }
         ?>
@@ -48,5 +48,5 @@
 
     </table>
 
-  </bocy>
+  </body>
 </html>
