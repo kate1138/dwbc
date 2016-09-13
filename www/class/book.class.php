@@ -46,7 +46,28 @@
         ");
         $stmt->execute($book_data);
       } else {
-        //update
+        $book_data=array(
+          "book_id"=>$this->book_id
+          ,"creator_id"=>$this->creator_id
+          ,"book_category_id"=>$this->book_category_id
+          ,"active_book_ind"=>$this->active_book_ind
+          ,"won_round_id"=>$this->won_round_id
+          ,"title"=>$this->title
+          ,"author"=>$this->author
+          ,"ref_link"=>$this->ref_link
+        );
+        $stmt=$db_handler->prepare("update books set
+          creator_id=:creator_id
+          ,update_date=now()
+          ,book_category_id=:book_category_id
+          ,active_book_ind=:active_book_ind
+          ,won_round_id=:won_round_id
+          ,title=:title
+          ,author=:author
+          ,ref_link=:ref_link
+          where book_id=:book_id;
+        ");
+        $stmt->execute($book_data);
       }
     }
 

@@ -32,7 +32,7 @@
 
     <table>
       <tr>
-        <th>Title</th><th>Author</th><th>Category</th><th>Added by</th><th>Reference Link</th>
+        <th>Title</th><th>Author</th><th>Category</th><th>Added by</th><th>Reference Link</th><th>Edit</th></tr>
         <?php
           foreach($book_list_data as $book){
             echo "<tr>
@@ -41,10 +41,10 @@
               <td>".$book["book_category_desc"]."</td>
               <td>".$book["user_name"]."</td>
               <td><a href=\"".$book["ref_link"]."\" target=\"_blank\">[link]</a></td>
+              <td><a href=\"book_edit.php?book_id=".$book["book_id"]."\">[edit]</a></td>
             </tr>";
           }
         ?>
-      </tr>
 
     </table>
 

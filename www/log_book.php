@@ -50,8 +50,8 @@
         <option value="2">Non-Fiction</option>
       </select><br>
       Active for vote:
-        <input type="radio" name="active_book_ind" value="1" cheked> Yes
-        <input type="radio" name="active_book_ind" value="0" > No<br>
+        <input type="radio" name="active_book_ind" value="1" checked /> Yes
+        <input type="radio" name="active_book_ind" value="0" /> No<br>
       <input type="submit" value="Submit" name="submit_book" />
     </form>
   <?php else : ?>
