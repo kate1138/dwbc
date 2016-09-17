@@ -76,8 +76,8 @@
         Author: <input type="text" name="author" value="<?php echo $book_update->author; ?>" .><br>
         Reference link: <input type="text" name="ref_link" value="<?php echo $book_update->ref_link; ?>".><br>
         Book category: <select name="book_category_id">
-          <option value="1">Fiction</option>
-          <option value="2" selected>Non-Fiction</option>
+          <option value="1" <?php echo $fiction_selected ?>>Fiction</option>
+          <option value="2" <?php echo $nonfiction_selected ?>>Non-Fiction</option>
         </select><br>
         Active for vote:
           <input type="radio" name="active_book_ind" value="1" <?php echo $active_checked; ?>> Yes

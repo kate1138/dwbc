@@ -25,5 +25,38 @@
 
       return $book_list_data;
     }
+
+    public function get_candidates($book_category_id,$db_handler){
+      $sql="
+        select
+          book_id
+          ,creator_id
+          ,title
+          ,author
+          ,ref_link
+          from (
+            select
+              book_id
+              ,creator_id
+              ,title
+              ,author
+              ,ref_link
+              ,if(@grp=creator_id,@rk:=@rk+1,@rk:=1) as rk
+              ,@grp:=creator_id
+            from books
+            ,(select @rk:=0,@grp:=0) a
+            where book_category_id=:book_category_id
+            and (won_round_id=0 or won_round_id is null)
+            and active_book_ind=1
+            order by creator_id, update_date desc
+         ) a
+         where rk<=2;
+      ";
+      $stmt=$db_handler->prepare($sql);
+      $stmt->execute(array("book_category_id"=>$book_category_id));
+      $book_list_data=$stmt->fetchall();
+
+      return $book_list_data;
+    }
   }
 ?>

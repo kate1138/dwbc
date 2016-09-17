@@ -20,6 +20,8 @@
   require_once ROOT_DIR.'class/userTools.class.php';
   require_once ROOT_DIR.'class/book.class.php';
   require_once ROOT_DIR.'class/bookTools.class.php';
+  require_once ROOT_DIR.'class/vote.class.php';
+  require_once ROOT_DIR.'class/voteTools.class.php';
 
   session_start();
 
