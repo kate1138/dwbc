@@ -50,3 +50,14 @@ CREATE TABLE IF NOT EXISTS `round_book_mapping` (
   `total_vote` decimal(10,2) default 0.0,
   PRIMARY KEY (`round_book_map_id`)
 );
+
+CREATE TABLE IF NOT EXISTS `votes` (
+  `vote_id` int(11) NOT NULL AUTO_INCREMENT,
+  `round_book_map_id` int(11) NOT NULL,
+  `creator_id` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  `vote_weight` decimal(10,2) default 0.0,
+  PRIMARY KEY (`vote_id`),
+  UNIQUE INDEX (`round_book_map_id`,`creator_id`)
+);

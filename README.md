@@ -54,3 +54,13 @@ foreach($data as $jedi => $lightsaber_color){
   echo $jedi . " - " $lightsaber_color . ".<br>";
 }
 ```
+
+3. object syntax
+```php
+$user = new user(array("user_id"=>$user_id)); //constructor takes an array...
+$user->user_id //reference a public field;
+$user->login() //calls a public function
+```
+
+====================================
+PDO summary

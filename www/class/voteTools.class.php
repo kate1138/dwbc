@@ -1,15 +1,12 @@
 <?php
   class voteTools{
-    public function check_active_round_exists($db_handler){
-      $sql="select count(*) cnt from rounds where round_status=1;";
+    public function get_active_round($db_handler){
+      $sql="select round_id from rounds where round_status=1;";
       $stmt=$db_handler->prepare($sql);
       $stmt->execute();
-      $cnt=$stmt->fetch();
-      if($cnt["cnt"]==0){
-        return false;
-      } else {
-        return true;
-      }
+      $results=$stmt->fetch();
+
+      return $results["round_id"];
     }
 
     public function create_new_round($book_list_data,$creator_id,$book_category_id,$db_handler){
@@ -53,6 +50,38 @@
         $round_id=-1; //negative round_id treated as a failure
       }
       return $round_id;
+    }
+
+    public function save_vote($creator_id,$vote,$db_handler){
+      $sql="
+        insert into votes (
+          round_book_map_id
+          ,creator_id
+          ,create_date
+          ,update_date
+          ,vote_weight
+        ) values (
+          :round_book_map_id
+          ,:creator_id
+          ,now()
+          ,now()
+          ,:vote_weight
+        ) on duplicate key update
+          update_date=now()
+          ,vote_weight=:vote_weight
+      ";
+      $round_book_map_id=-1;
+      $vote_weight=-1;
+      $stmt=$db_handler->prepare($sql);
+      $stmt->bindParam(":round_book_map_id",$round_book_map_id, PDO::PARAM_INT);
+      $stmt->bindParam(":creator_id",$creator_id, PDO::PARAM_INT);
+      $stmt->bindParam(":vote_weight",$vote_weight);
+
+      for ($i=0; $i<count($vote["round_book_map_id"]); $i++){
+        $round_book_map_id=$vote["round_book_map_id"][$i];
+        $vote_weight=$vote["weight"][$i];
+        $stmt->execute();
+      }
     }
 
   }

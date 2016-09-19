@@ -27,15 +27,16 @@
   }
 
   if($_SESSION["user_logged_in"]){
-    $active_round_exists=$vT->check_active_round_exists($db_handler);
+    $active_round_id=$vT->get_active_round($db_handler);
+    //$active_round_exists=$vT->check_active_round_exists($db_handler);
 
-    if($active_round_exists){
+    if($active_round_id){
       $create_new_round="disabled";
       $msg.="* cannot create new round. There is already an active round.";
     } else { //do create round here
       if(isset($_POST["submit_round"])){
         $book_list_data=$BT->get_candidates($_POST["book_category_id"],$db_handler);
-        $round_id=$vT->create_new_round($book_list_data,$_SESSION["user_logged_in"],$_POST["book_category_id"],$db_handler);
+        $round_id=$vT->create_new_round($book_list_data,$_SESSION["user_object"]->user_id,$_POST["book_category_id"],$db_handler);
         if($round_id<0){
           $round_create_display_error=true;
         } else {
