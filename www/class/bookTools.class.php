@@ -59,21 +59,26 @@
       return $book_list_data;
     }
 
-    public function get_books_by_round($round_id,$db_handler){
+    public function get_books_by_round($round_id,$user_id,$db_handler){
       $sql="select
         b.round_book_map_id
         ,a.book_id
         ,a.title
         ,a.author
         ,a.ref_link
+        ,c.vote_weight
         from books a
         join round_book_mapping b
         on a.book_id=b.book_id
+        left join votes c
+        on b.round_book_map_id=c.round_book_map_id
+        and c.creator_id=:user_id
         where b.round_id=:round_id
         ;
       ";
       $stmt=$db_handler->prepare($sql);
       $stmt->bindParam(":round_id",$round_id, PDO::PARAM_INT);
+      $stmt->bindParam(":user_id",$user_id, PDO::PARAM_INT);
       $stmt->execute();
       $book_list_data=$stmt->fetchall();
 
