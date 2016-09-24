@@ -1,5 +1,12 @@
 <?php
   class voteTools{
+    public function get_latest_round($db_handler){
+      $sql="select max(round_id) round_id from rounds;";
+      $stmt=$db_handler->prepare($sql);
+      $stmt->execute();
+      $result=$stmt->fetch();
+      return $result["round_id"];
+    }
     public function get_active_round($db_handler){
       $sql="select round_id from rounds where round_status=1;";
       $stmt=$db_handler->prepare($sql);
@@ -130,13 +137,6 @@
         $votes[$vote_result["round_book_map_id"]]=$vote_result["total_vote"];
       }
 
-      echo '<pre>';
-      var_dump($votes);
-      var_dump(array_keys($votes, max($votes)));
-      var_dump(count(array_keys($votes, max($votes))));
-      var_dump(array_keys($votes, max($votes))[0]);
-      echo '</pre>';
-
       if(count(array_keys($votes, max($votes)))==1){
         //updates
         $won_round_book_map_id=array_keys($votes, max($votes))[0];
@@ -206,25 +206,6 @@
 
 
 
-      //$db_handler->beginTransaction();
-      //try {
-      //  //calculate vote, update final votes into round book mapping table
-      //  $stmt=$db_handler->prepare($sql["calc_vote"]);
-      //  $stmt->bindParam(":round_id",$round_id, PDO::PARAM_INT);
-      //  $stmt->execute();
-      //  //get books and votes
-      //  $stmt=$db_handler->prepare($sql["get_vote"]);
-      //  $stmt->bindParam(":round_id",$round_id, PDO::PARAM_INT);
-      //  $stmt->execute();
-      //  $book_list_data=$stmt->fetchAll();
-      //  //find winner book id
-      //
-
-      //} catch (PDOException $e) {
-      //  $db_handler->rollBack();
-
-
-      //}
     }
 
   }
