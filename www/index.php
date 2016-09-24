@@ -19,6 +19,7 @@
       You can:
       <br><a href="log_book.php">Log a book.</a>
       <br><a href="new_round.php">new round.</a>
+      <br><a href="vote.php">vote.</a>
       <br><a href="user_settings.php">Update user info.</a>
       <br><a href="logout.php">Log out.</a>
     <?php else : ?>

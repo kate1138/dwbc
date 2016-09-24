@@ -10,8 +10,9 @@
   $active_round_id=$vT->get_active_round($db_handler);
 
   if($active_round_id){
-    $book_list_data=$BT->get_books_by_round($active_round_id,$_SESSION["user_object"]->user_id,$db_handler);
+
     if($_SESSION["user_logged_in"]){
+      $book_list_data=$BT->get_books_by_round($active_round_id,$_SESSION["user_object"]->user_id,$db_handler);
       if(isset($_POST["submit_vote"])){
         //check if total is 1
         $total_weight=0;
@@ -29,6 +30,7 @@
     } else {
       $msg="you are not logged in.";
       $disable_submit="disabled";
+      $book_list_data=$BT->get_books_by_round($active_round_id,0,$db_handler);
     }
   } else {
     $msg="no active round for vote";
@@ -72,7 +74,7 @@
             <td>".$book["title"]."</td>
             <td>".$book["author"]."</td>
             <td><a href=\"".$book["ref_link"]."\" target=\"_blank\">[link]</a></td>
-            <td>Vote Weight: <input type=\"number\" name=\"vote[weight][]\" value=".$book["vote_weight"]." min=\"0\" max=\"1\" step=\"0.1\">
+            <td>Vote: <input type=\"number\" name=\"vote[weight][]\" value=".$book["vote_weight"]." min=\"0\" max=\"1\" step=\"0.1\">
             <input type=\"hidden\" name=\"vote[round_book_map_id][]\" value=\"".$book["round_book_map_id"]."\" >
             </td>
           </tr>";
