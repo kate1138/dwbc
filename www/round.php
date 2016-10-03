@@ -2,6 +2,7 @@
   require_once 'include/global.inc.php';
   $msg="";
   $display_form=true;
+  $display_vote_result=false;
   $disable_submit="";
   $vT=new voteTools;
   $BT=new bookTools;
@@ -12,7 +13,7 @@
 
   if(isset($_GET["round_id"])){
 
-    $book_list_data=$BT->get_books_by_round($_GET["round_id"],0,$db_handler);
+    $book_list_data=$BT->get_books_by_round_by_user($_GET["round_id"],0,$db_handler);
     $round_info=$vT->get_round_info($_GET["round_id"],$db_handler);
 
     $vote_cnt=$round_info["vote_cnt"];
@@ -41,10 +42,16 @@
         $display_form=false;
         $disable_submit="disabled";
       }
-    } else {
+    } else { //round is inactive
+      $display_vote_result=true;
+      $book_list_data=$BT->get_books_by_round($_GET["round_id"],$db_handler);
       $display_form=false;
       $disable_submit="disabled";
       $won_book_id=$round_info["winner_book_id"];
+      echo "<pre>";
+      var_dump($round_info);
+      var_dump($book_list_data);
+      echo "</pre>";
       $bk=new book(array("book_id"=>$won_book_id));
       $bk->set_book_info($db_handler);
       $msg.="This round of voting is concluded. Winner book is <i>".$bk->title."</i>.";
@@ -92,13 +99,19 @@
   </form>
   <table>
     <tr>
-      <th>Title</th><th>Author</th><th>Reference Link</th></tr>
+      <th>Title</th><th>Author</th><th>Reference Link</th><th>Votes</th></tr>
       <?php
         foreach($book_list_data as $book){
+          if($display_vote_result){
+            echo $votes=$book["total_vote"];
+          } else {
+            echo $votes="shown when vote is concluded";
+          }
           echo "<tr>
             <td>".$book["title"]."</td>
             <td>".$book["author"]."</td>
             <td><a href=\"".$book["ref_link"]."\" target=\"_blank\">[link]</a></td>
+            <td>".$votes."</td>
           </tr>";
         }
       ?>

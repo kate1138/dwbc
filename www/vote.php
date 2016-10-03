@@ -12,7 +12,7 @@
   if($active_round_id){
 
     if($_SESSION["user_logged_in"]){
-      $book_list_data=$BT->get_books_by_round($active_round_id,$_SESSION["user_object"]->user_id,$db_handler);
+      $book_list_data=$BT->get_books_by_round_by_user($active_round_id,$_SESSION["user_object"]->user_id,$db_handler);
       if(isset($_POST["submit_vote"])){
         //check if total is 1
         $total_weight=0;
@@ -34,7 +34,7 @@
     } else {
       $msg="you are not logged in.";
       $disable_submit="disabled";
-      $book_list_data=$BT->get_books_by_round($active_round_id,0,$db_handler);
+      $book_list_data=$BT->get_books_by_round_by_user($active_round_id,0,$db_handler);
     }
   } else {
     $msg="no active round to vote.";
