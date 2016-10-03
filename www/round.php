@@ -25,7 +25,7 @@
       if($_SESSION["user_logged_in"]){
         if(isset($_POST["submit_conclude_round"])){
           $won_book_id=$vT->conclude_round($_GET["round_id"],$db_handler);
-          
+
           if($won_book_id==-1){
             $msg.="Cannot conclude voting, there is not a unique winner. Please update votes.";
           } else {
@@ -42,9 +42,12 @@
         $disable_submit="disabled";
       }
     } else {
-      $round_status_desc="This round of voting is concluded.";
       $display_form=false;
       $disable_submit="disabled";
+      $won_book_id=$round_info["winner_book_id"];
+      $bk=new book(array("book_id"=>$won_book_id));
+      $bk->set_book_info($db_handler);
+      $msg.="This round of voting is concluded. Winner book is <i>".$bk->title."</i>.";
     }
 
   } else {

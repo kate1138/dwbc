@@ -17,14 +17,18 @@
         //check if total is 1
         $total_weight=0;
         foreach($_POST["vote"]["weight"] as $i => $weight){
+          if($weight>1 or $weight<0){
+            $msg.="Failed to vote: votes must be between 0 and 1.";
+            break;
+          }
           $total_weight+=$weight;
         }
         if($total_weight==1.0){
           //success, save to DB
           $vT->save_vote($_SESSION["user_object"]->user_id,$_POST["vote"],$db_handler);
-          $msg.="votes saved.";
+          $msg.="Success: votes saved.";
         } else {
-          $msg.="total vote must be 1.";
+          $msg.="Failed to vote: total vote must be 1.";
         }
       }
     } else {
@@ -33,7 +37,7 @@
       $book_list_data=$BT->get_books_by_round($active_round_id,0,$db_handler);
     }
   } else {
-    $msg="no active round for vote";
+    $msg="no active round to vote.";
     $disable_submit="disabled";
   }
 
