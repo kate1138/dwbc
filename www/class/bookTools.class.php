@@ -12,10 +12,13 @@
           ,books.title
           ,books.author
           ,books.ref_link
+          ,books.active_book_ind
+          ,books.won_round_id
+          ,books.creator_id
         from books
         join users
         on books.creator_id=users.user_id
-        where books.active_book_ind=1
+        where 1=1
         and ".$where_clause.";"
       ;
 

@@ -16,7 +16,7 @@
     echo "<a href=\"vote.php\">Vote</a>  |  ";
     echo "<a href=\"new_round.php\">Initiate Voting</a>  |  ";
     echo "<a href=\"logout.php\">Log Out</a>  |  ";
-    echo "Welcome, ".$_SESSION["user_object"]->user_name ."!";
+    echo "Welcome, <a href=\"user_settings.php\">".$_SESSION["user_object"]->user_name ."</a>!";
   } else {
     echo "<a href=\"login.php\">Log In</a>  |  ";
     echo "<a href=\"register.php\">Register</a>  |  ";

@@ -48,10 +48,6 @@
       $display_form=false;
       $disable_submit="disabled";
       $won_book_id=$round_info["winner_book_id"];
-      echo "<pre>";
-      var_dump($round_info);
-      var_dump($book_list_data);
-      echo "</pre>";
       $bk=new book(array("book_id"=>$won_book_id));
       $bk->set_book_info($db_handler);
       $msg.="This round of voting is concluded. Winner book is <i>".$bk->title."</i>.";
@@ -103,9 +99,9 @@
       <?php
         foreach($book_list_data as $book){
           if($display_vote_result){
-            echo $votes=$book["total_vote"];
+            $votes=$book["total_vote"];
           } else {
-            echo $votes="shown when vote is concluded";
+            $votes="show when vote is concluded";
           }
           echo "<tr>
             <td>".$book["title"]."</td>
