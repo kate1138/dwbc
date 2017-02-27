@@ -60,8 +60,8 @@
     tr:nth-child(even) {
       background-color: #dddddd;
     }
-    th.Recommendation {
-      width: 15%
+    .Rec {
+      width: 15%;
     }
   </style>
   <?php
@@ -75,14 +75,14 @@
 <form method="post" action="vote.php">
   <table>
     <tr>
-      <th>Title</th><th>Author</th><th>Reference Link</th><th>Recommendation</th><th>Vote Weight</th></tr>
+      <th>Title</th><th>Author</th><th>Reference Link</th><th class="Rec">Recommendation</th><th>Vote Weight</th></tr>
       <?php
         foreach($book_list_data as $book){
           echo "<tr>
             <td>".$book["title"]."</td>
             <td>".$book["author"]."</td>
             <td><a href=\"".$book["ref_link"]."\" target=\"_blank\">[link]</a></td>
-            <td>".$book["rec_text"]."</td>
+            <td class=\"Rec\">".$book["rec_text"]."</td>
             <td>Vote: <input type=\"number\" name=\"vote[weight][]\" value=".$book["vote_weight"]." min=\"0\" max=\"1\" step=\"0.1\">
             <input type=\"hidden\" name=\"vote[round_book_map_id][]\" value=\"".$book["round_book_map_id"]."\" >
             </td>

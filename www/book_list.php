@@ -20,8 +20,8 @@
       tr:nth-child(even) {
         background-color: #dddddd;
       }
-      th.Recommendation {
-        width: 15%
+      .Rec {
+        width: 15%;
       }
     </style>
   </head>
@@ -36,7 +36,7 @@
 
     <table>
       <tr>
-        <th>Title</th><th>Author</th><th>Category</th><th>Added by</th><th>Active</th><th>Recommendation</th><th>Won</th><th>Ref</th><th>Edit</th></tr>
+        <th>Title</th><th>Author</th><th>Category</th><th>Added by</th><th>Active</th><th class="Rec">Recommendation</th><th>Won</th><th>Ref</th><th>Edit</th></tr>
         <?php
           foreach($book_list_data as $book){
             if($book["won_round_id"]>0){
@@ -55,7 +55,7 @@
               <td>".$book["book_category_desc"]."</td>
               <td>".$book["user_name"]."</td>
               <td>".$book["active_book_ind"]."</td>
-              <td>".$book["rec_text"]."</td>
+              <td class=\"Rec\">".$book["rec_text"]."</td>
               <td>".$winner."</td>
               <td><a href=\"".$book["ref_link"]."\" target=\"_blank\">[link]</a></td>
               <td>".$edit."</td>
