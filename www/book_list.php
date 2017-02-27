@@ -9,6 +9,7 @@
   <head>
     <style>
       table {
+        width: 90%;
         border-collapse: collapse;
       }
       td, th {
@@ -18,6 +19,9 @@
       }
       tr:nth-child(even) {
         background-color: #dddddd;
+      }
+      th.Recommendation {
+        width: 15%
       }
     </style>
   </head>
@@ -32,7 +36,7 @@
 
     <table>
       <tr>
-        <th>Title</th><th>Author</th><th>Category</th><th>Added by</th><th>Active</th><th>Rec Text</th><th>Won</th><th>Ref</th><th>Edit</th></tr>
+        <th>Title</th><th>Author</th><th>Category</th><th>Added by</th><th>Active</th><th>Recommendation</th><th>Won</th><th>Ref</th><th>Edit</th></tr>
         <?php
           foreach($book_list_data as $book){
             if($book["won_round_id"]>0){

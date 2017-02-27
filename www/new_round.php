@@ -63,6 +63,7 @@
   <head>
     <style>
       table {
+        width: 90%;
         border-collapse: collapse;
       }
       td, th {
@@ -72,6 +73,9 @@
       }
       tr:nth-child(even) {
         background-color: #dddddd;
+      }
+      th.Recommendation {
+        width: 15%
       }
     </style>
   </head>
