@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS `books` (
   PRIMARY KEY (`book_id`)
 ) DEFAULT CHARSET=utf8;
 
+alter table `books` add rec_text varchar(4200);
+
 CREATE TABLE IF NOT EXISTS `rounds` (
   `round_id` int(11) NOT NULL AUTO_INCREMENT,
   `creator_id` int(11) NOT NULL,

@@ -13,6 +13,7 @@
           ,books.author
           ,books.ref_link
           ,books.active_book_ind
+          ,books.rec_text
           ,books.won_round_id
           ,books.creator_id
         from books
@@ -69,6 +70,7 @@
         ,a.title
         ,a.author
         ,a.ref_link
+        ,a.rec_text
         ,c.vote_weight
         from books a
         join round_book_mapping b

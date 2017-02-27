@@ -31,6 +31,7 @@
           //update DB
           $book_update->book_category_id=$_POST["book_category_id"];
           $book_update->active_book_ind=$_POST["active_book_ind"];
+          $book_update->rec_text=$_POST["rec_text"];
           $book_update->title=$_POST["title"];
           $book_update->author=$_POST["author"];
           $book_update->ref_link=$_POST["ref_link"];
@@ -82,6 +83,7 @@
         Active for vote:
           <input type="radio" name="active_book_ind" value="1" <?php echo $active_checked; ?>> Yes
           <input type="radio" name="active_book_ind" value="0" <?php echo $inactive_checked; ?>> No<br>
+        Recommendation text: <textarea rows="4" cols="50" name="rec_text"><?php echo $book_update->rec_text; ?></textarea><br>
         <input type="submit" value="Submit" name="submit_book_edit" />
       </form>
    <?php endif; ?>

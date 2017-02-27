@@ -20,6 +20,7 @@
       $this->update_date = (isset($book_info['update_date']) ? $book_info['update_date'] : "");
       $this->book_category_id = (isset($book_info['book_category_id']) ? $book_info['book_category_id'] : "");
       $this->active_book_ind = (isset($book_info['active_book_ind']) ? $book_info['active_book_ind'] : "");
+      $this->rec_text = (isset($book_info['rec_text']) ? $book_info['rec_text'] : "");
       $this->won_round_id = (isset($book_info['won_round_id']) ? $book_info['won_round_id'] : "");
 
       $this->title = (isset($book_info['title']) ? $book_info['title'] : "");
@@ -35,14 +36,15 @@
           "creator_id"=>$this->creator_id
           ,"book_category_id"=>$this->book_category_id
           ,"active_book_ind"=>$this->active_book_ind
+          ,"rec_text"=>$this->rec_text
           ,"won_round_id"=>$this->won_round_id
           ,"title"=>$this->title
           ,"author"=>$this->author
           ,"ref_link"=>$this->ref_link
         );
         $stmt=$db_handler->prepare("
-          insert into books (creator_id,create_date,update_date,book_category_id,active_book_ind,won_round_id,title,author,ref_link)
-          values(:creator_id,now(),now(),:book_category_id,:active_book_ind,:won_round_id,:title,:author,:ref_link);
+          insert into books (creator_id,create_date,update_date,book_category_id,active_book_ind,rec_text,won_round_id,title,author,ref_link)
+          values(:creator_id,now(),now(),:book_category_id,:active_book_ind,:rec_text,:won_round_id,:title,:author,:ref_link);
         ");
         $stmt->execute($book_data);
       } else {
@@ -51,6 +53,7 @@
           ,"creator_id"=>$this->creator_id
           ,"book_category_id"=>$this->book_category_id
           ,"active_book_ind"=>$this->active_book_ind
+          ,"rec_text"=>$this->rec_text
           ,"won_round_id"=>$this->won_round_id
           ,"title"=>$this->title
           ,"author"=>$this->author
@@ -61,6 +64,7 @@
           ,update_date=now()
           ,book_category_id=:book_category_id
           ,active_book_ind=:active_book_ind
+          ,rec_text=:rec_text
           ,won_round_id=:won_round_id
           ,title=:title
           ,author=:author
@@ -80,6 +84,7 @@
         ,update_date
         ,book_category_id
         ,active_book_ind
+        ,rec_text
         ,won_round_id
         ,title
         ,author
@@ -94,6 +99,7 @@
       $this->update_date=$book_data["update_date"];
       $this->book_category_id=$book_data["book_category_id"];
       $this->active_book_ind=$book_data["active_book_ind"];
+      $this->rec_text=$book_data["rec_text"];
       $this->won_round_id=$book_data["won_round_id"];
       $this->title=$book_data["title"];
       $this->author=$book_data["author"];

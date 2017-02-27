@@ -6,6 +6,7 @@
   $ref_link="";
   $book_category_id="";
   $active_book_ind="";
+  $rec_text="";
   if(isset($_SESSION["user_object"]->user_id)){
     $creator_id=$_SESSION["user_object"]->user_id;
   }
@@ -17,6 +18,7 @@
     $ref_link=$_POST["ref_link"];
     $book_category_id=$_POST["book_category_id"];
     $active_book_ind=$_POST["active_book_ind"];
+    $rec_text=$_POST["rec_text"];
 
     $book_data=array(
       "title"=>$title
@@ -25,6 +27,7 @@
       ,"creator_id"=>$creator_id
       ,"book_category_id"=>$book_category_id
       ,"active_book_ind"=>$active_book_ind
+      ,"rec_text"=>$rec_text
     );
 
     $new_book=new book($book_data);
@@ -52,6 +55,7 @@
       Active for vote:
         <input type="radio" name="active_book_ind" value="1" checked /> Yes
         <input type="radio" name="active_book_ind" value="0" /> No<br>
+      Recommendation text: <textarea rows="4" cols="50" name="rec_text"></textarea><br>
       <input type="submit" value="Submit" name="submit_book" />
     </form>
   <?php else : ?>
